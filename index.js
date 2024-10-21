@@ -68,7 +68,9 @@ app.get("/api", async (req, res) => {
   }
 
   try {
-    let browser = await puppeteer.launch(options);
+    const browser = await puppeteer.launch({
+        ignoreDefaultArgs: ['--disable-extensions'],
+      });
     let page = await browser.newPage();
     await page.goto("https://www.google.com");
     res.send(await page.title());
