@@ -1,0 +1,23 @@
+{
+  "name": "mission-puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "^18"
+  },
+  "dependencies": {
+    "chrome-aws-lambda": "^9.1.0",
+    "express": "^4.21.1",
+    "puppeteer-core": "^9.1.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.6.0"
+  }
+}
