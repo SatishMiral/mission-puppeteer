@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
+const {join} = require('path');
 
+
+{import("puppeteer").Configuration}
+ 
+module.exports = {
+  cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
+};
 let chrome = {};
 let puppeteer;
 
