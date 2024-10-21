@@ -1,4 +1,5 @@
-const app = require("express")();
+const express = require("express");
+const app = express();
 
 let chrome = {};
 let puppeteer;
@@ -17,21 +18,20 @@ app.get("/api", async (req, res) => {
     options = {
       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
       defaultViewport: chrome.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: true,
+      executablePath: await chrome.executablePath || '/usr/bin/chromium-browser', // Added fallback for executablePath
+      headless: chrome.headless,
       ignoreHTTPSErrors: true,
     };
   }
 
   try {
     let browser = await puppeteer.launch(options);
-
     let page = await browser.newPage();
     await page.goto("https://www.google.com");
     res.send(await page.title());
   } catch (err) {
-    console.error(err);
-    return null;
+    console.error("Error launching Puppeteer:", err);
+    res.status(500).send("Error occurred while launching browser.");
   }
 });
 
